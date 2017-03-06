@@ -67,7 +67,7 @@ var WebViewBridge = React.createClass({
     };
   },
 
-  
+
   componentWillMount: function() {
     DeviceEventEmitter.addListener("webViewBridgeMessage", (body) => {
       const { onBridgeMessage } = this.props;
@@ -120,7 +120,7 @@ var WebViewBridge = React.createClass({
       <RCTWebViewBridge
         ref={RCT_WEBVIEWBRIDGE_REF}
         key="webViewKey"
- 				javaScriptEnabled={true}
+		javaScriptEnabled={true}
         {...props}
         source={resolveAssetSource(source)}
         style={webViewStyles}
@@ -164,6 +164,14 @@ var WebViewBridge = React.createClass({
     UIManager.dispatchViewManagerCommand(
       this.getWebViewBridgeHandle(),
       UIManager.RCTWebViewBridge.Commands.reload,
+      null
+    );
+  },
+
+  stopLoading: function() {
+    UIManager.dispatchViewManagerCommand(
+      this.getWebViewBridgeHandle(),
+      UIManager.RCTWebViewBridge.Commands.stopLoading,
       null
     );
   },
